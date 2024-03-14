@@ -1,0 +1,36 @@
+name: SSG Login Example
+on: push
+
+env:
+   USERNAME: ${{secrets.USERNAME}}
+   PASSWORD: ${{secrets.PASSWORD}}
+
+jobs:
+   cypress-run:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout
+           uses: actions/checkout@v3
+         # Install NPM dependencies - using peer dependencies
+         # cypress-image-snapshot and #cypress-mochawesome-reports spits out legacy dependencies
+         # and fails the build.
+         - name: Cypress install
+           run: npm install --legacy-peer-deps
+         # Run cypress tests
+         - name: Cypress run
+           uses: cypress-io/github-action@v5
+           with:
+              install: false
+              config-file: cypress.config.js
+           # after the test run completes, store videos/screenshots
+           # Screenshots will only be gnerated if E2E test failed
+         - uses: actions/upload-artifact@v3
+           if: failure()
+           with:
+              name: cypress-screenshots
+              path: cypress/screenshots
+         - uses: actions/upload-artifact@v3
+           if: always()
+           with:
+              name: cypress-videos
+              path: cypress/videos
