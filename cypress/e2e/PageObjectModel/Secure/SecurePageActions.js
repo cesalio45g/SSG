@@ -5,8 +5,8 @@ class SecureActions {
    /**
     * clicks the logout link on the '/secure' page
     */
-   logout() {
-      secure.getLogOut().click();
+   clickLogout() {
+      secure.getLogoutLink().click();
    }
 }
 

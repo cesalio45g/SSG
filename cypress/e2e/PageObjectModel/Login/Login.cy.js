@@ -20,7 +20,7 @@ describe('Given a user visits the Practice Login page', () => {
          cy.location().should((loc) => {
             expect(loc.pathname).to.eq('/secure');
          });
-         secureAction.logout();
+         secureAction.clickLogout();
          // optional check
          cy.location().should((loc) => {
             expect(loc.pathname).to.eq('/login');
