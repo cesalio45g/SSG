@@ -2,8 +2,8 @@ name: SSG Login Example
 on: push
 
 env:
-   USERNAME: ${{secrets.CYPRESS_USERNAME}}
-   PASSWORD: ${{secrets.CYPRESS_PASSWORD}}
+   CYPRESS_USERNAME: ${{secrets.CYPRESS_USERNAME}}
+   CYPRESS_PASSWORD: ${{secrets.CYPRESS_PASSWORD}}
 
 jobs:
    cypress-run:
