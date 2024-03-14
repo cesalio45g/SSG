@@ -2,8 +2,8 @@ name: SSG Login Example
 on: push
 
 env:
-   USERNAME: ${{secrets.USERNAME}}
-   PASSWORD: ${{secrets.PASSWORD}}
+   USERNAME: ${{secrets.CYPRESS_USERNAME}}
+   PASSWORD: ${{secrets.CYPRESS_PASSWORD}}
 
 jobs:
    cypress-run:
@@ -14,10 +14,10 @@ jobs:
          # Install NPM dependencies - using peer dependencies
          # cypress-image-snapshot and #cypress-mochawesome-reports spits out legacy dependencies
          # and fails the build.
-         - name: Cypress install
+         - name: CYPRESS install
            run: npm install --legacy-peer-deps
          # Run cypress tests
-         - name: Cypress run
+         - name: CYPRESS run
            uses: cypress-io/github-action@v5
            with:
               install: false
