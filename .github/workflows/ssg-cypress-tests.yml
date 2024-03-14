@@ -1,5 +1,10 @@
 name: SSG Login Example
 on: push
+
+env:
+   USERNAME: ${{secrets.USERNAME}}
+   PASSWORD: ${{secrets.PASSWORD}}
+
 jobs:
    cypress-run:
       runs-on: ubuntu-latest
