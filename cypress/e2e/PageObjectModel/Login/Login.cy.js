@@ -15,7 +15,7 @@ describe('Given a user visits the Practice Login page', () => {
    context('When a user enters valid login credentials', () => {
       it('Then a user shall be able to login', () => {
          loginAction.enterUsername(Cypress.env('USERNAME'));
-         loginAction.enterPassword(Cypress.env('PASSWORD'));
+         loginAction.enterPassword(Cypress.env('PASSWORD'), { log: false });
          loginAction.clickLogin();
          cy.location().should((loc) => {
             expect(loc.pathname).to.eq('/secure');
@@ -32,7 +32,7 @@ describe('Given a user visits the Practice Login page', () => {
    context('When a user enters invalid username credentials', () => {
       it('Then an invalid username message shall appear', () => {
          loginAction.enterUsername('dummyUsername');
-         loginAction.enterPassword(Cypress.env('PASSWORD'));
+         loginAction.enterPassword(Cypress.env('PASSWORD'), { log: false });
          loginAction.clickLogin();
          cy.location().should((loc) => {
             expect(loc.pathname).not.to.eq('/secure');
