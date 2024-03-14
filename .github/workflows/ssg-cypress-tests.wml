@@ -1,0 +1,24 @@
+name: SSG Login Example
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      # Run cypress tests
+      - name: SSG Cypress Tests
+        uses: cypress-io/github-action@v5
+        with:
+          install: false
+          config-file: cypress.config.js
+        # after the test run completes, store videos/screenshots
+        # Screenshots will only be gnerated if E2E test failed
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos  
+          path: cypress/videos

@@ -3,7 +3,7 @@ class Secure {
     *
     * @returns the 'logout' link on the /secure page
     */
-   getLogOut() {
+   getLogoutLink() {
       return cy.get('a.button[href="/logout"]');
    }
 }
