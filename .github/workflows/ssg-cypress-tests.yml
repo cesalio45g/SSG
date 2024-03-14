@@ -4,8 +4,15 @@ jobs:
    cypress-run:
       runs-on: ubuntu-latest
       steps:
+         - name: Checkout
+           uses: actions/checkout@v3
+         # Install NPM dependencies - using peer dependencies
+         # cypress-image-snapshot and #cypress-mochawesome-reports spits out legacy dependencies
+         # and fails the build.
+         - name: Cypress install
+           run: npm install --legacy-peer-deps
          # Run cypress tests
-         - name: SSG Cypress Tests
+         - name: Cypress run
            uses: cypress-io/github-action@v5
            with:
               install: false
